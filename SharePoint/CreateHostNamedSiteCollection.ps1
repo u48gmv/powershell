@@ -1,3 +1,7 @@
+<# Load SharePoint PowerShell if not present #>
+If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue }
+
 <# Get the Webapplication by name#>
 $w = Get-SPWebApplication "HostNameTest" 
 <# Create a new Host Names Site Collection #>
