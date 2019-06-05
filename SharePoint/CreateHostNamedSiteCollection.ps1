@@ -1,7 +1,9 @@
 ﻿### Create Host Named SiteCollection SPSite ###
 Clear-Host
 ### Add SharePoint Snap In ###
-Add-PSSnapin "Microsoft.SharePoint.Powershell";
+<# Load SharePoint PowerShell if not present #>
+If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue }
 
 ### Init parameters ###
 #$Template="BLANKINTERNET#0"; ### Publishing site
