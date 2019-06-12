@@ -7,7 +7,7 @@ If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyCon
 
 
 ### Delete a site collection brute force way ###
-$siteUrls = @("http://sp2019vm/sites/bgcs/");
+$siteUrls = @("https://portal.dev-gmv.bgnet.de/");
 foreach ($siteUrl in $siteUrls) 
 {
 	Write-Host "Deleting site -> $siteUrl" -ForegroundColor Yellow -BackgroundColor Black;

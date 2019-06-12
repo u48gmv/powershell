@@ -8,15 +8,16 @@ If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyCon
 ### Init parameters ###
 #$Template="BLANKINTERNET#0"; ### Publishing site
 #$Template="DEV#0"; ### Developer site
-$Template="STS#0"; ### Standard team site
+#$Template="STS#0"; ### Standard team site
+$Template="SITEPAGEPUBLISHING#0" ### Communication site
 $Language = 1031; ### Deutsch
-$WebApp = "http://dev02.sp.ppro.bgnet.de/";
-$URL = "https://ssp.dev02.sp.ppro.bgnet.de/";
-$Owner = "ppro\sp48spsetupdev02";
-$Name ="Self Service Portal";
-$Description ="Ein Portal zum Beantragen von verschiedenen Seiten";
-$ContentDB ="DEV02_Content_Portal_001"
-$siteCollectionAdmins = @("ms\u48gmv","ms\u48pru","ms\u480tbs","ms\u48hhh","ms\u48mll","ms\u48gsc","ms\u48lpd","ppro\sp48backupadm");
+$WebApp = "http://sp2019vm/";
+$URL = "http://portal.dev-gmv.bgnet.de/";
+$Owner = "dev-gmv\u48gmv";
+$Name ="BG Portal";
+$Description ="Das Portal der BGen";
+$ContentDB ="WSS_Content_096bc88ec8dc4b4585d30f903f45a63a"
+$siteCollectionAdmins = @("dev-gmv\adadmin","dev-gmv\bguser");
 
 
 ### Create Host Named SiteCollection SPSite ###

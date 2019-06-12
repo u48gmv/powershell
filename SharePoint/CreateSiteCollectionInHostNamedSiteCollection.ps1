@@ -2,7 +2,10 @@
 clear-host
 
 ### Add SharePoint Snap In ###
-Add-PSSnapin "Microsoft.SharePoint.Powershell";
+<# Load SharePoint PowerShell if not present #>
+If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
+
 
 
 ### Init ###
@@ -10,17 +13,21 @@ Add-PSSnapin "Microsoft.SharePoint.Powershell";
 #$Template="STS#0"; ### Team site
 #$Template="BLANKINTERNET#0"; ### Publishing site
 #$Template="DEV#0"; ### Developer site
-$Template="STS#0"; ### Standard team site
+#$Template="STS#0"; ### Standard team site
+#$Template="STS#3"; ### Modern team site
+$Template="SITEPAGEPUBLISHING#0"; ### Communication Site
 $Language = 1031; ### German
-$WebApp = "http://test.sp.ppro.bgnet.de";
-$rootSite = "https://shared.test.sp.ppro.bgnet.de"; ## This Host named site collection needs to exist. NOTE: No leading or trailing slashes
-$sitePath = "mrkt"; ### The new site collection beneath the managed path "team. NOTE: No leading or trailing slashes"
-$siteManagedPath = "app" ### The managed path to use. NOTE: No leading or trailing slashes ##
-$Owner = "ppro\sp48spsetuptest";
-$Name ="Marktplatz";
-$Description ="Kleinanzeigen für alle Mitarbeiter";
-$ContentDB ="QA_Content_Portal_001"
-$siteCollectionAdmins = @("ms\u48pru","ms\u48wst","ms\u48gmv","ms\u480tbs","ms\u48hhh","ms\u48mll","ms\u48gsc","ms\u48rqa","ms\u48lpd","ppro\sp48backupadm");
+$WebApp = "http://sp2019vm";
+$rootSite = "http://portal.dev-gmv.bgnet.de"; ## This Host named site collection needs to exist. NOTE: No leading or trailing slashes
+$sitePath = "bgproj01"; ### The new site collection beneath the managed path "team. NOTE: No leading or trailing slashes"
+$siteManagedPath = "teamsites" ### The managed path to use. NOTE: No leading or trailing slashes ##
+$Owner = "dev-gmv\u48gmv";
+$Name ="BG Projekte 01";
+$Description ="Demo Projektseite";
+$ContentDB ="WSS_Content_096bc88ec8dc4b4585d30f903f45a63a";
+#$siteCollectionAdmins = @("ms\u48pru","ms\u48wst","ms\u48gmv","ms\u480tbs","ms\u48hhh","ms\u48mll","ms\u48gsc","ms\u48rqa","ms\u48lpd","ppro\sp48backupadm");
+$siteCollectionAdmins = @("dev-gmv\bguser");
+
 
 ### Start logic for creating site collection  ###
 
