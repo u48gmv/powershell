@@ -6,7 +6,8 @@ clear-host
 If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
 { Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue }
 
-$featuresToDisable = @("MDSFeature","CrossSiteCollectionPublishing");
+<# Provide the features you wish to disable #>
+$featuresToDisable = @("MDSFeature");
 
 <# Get all Web Applications, and iterate through them #>
 $webAppUrls = Get-SPWebApplication;
