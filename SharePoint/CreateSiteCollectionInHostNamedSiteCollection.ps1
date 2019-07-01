@@ -20,6 +20,7 @@ If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyCon
 $WebApp = "http://sp2019vm";
 $rootSite = "http://portal.dev-gmv.bgnet.de"; ## This Host named site collection needs to exist. NOTE: No leading or trailing slashes
 $ContentDB ="WSS_Content_096bc88ec8dc4b4585d30f903f45a63a";
+$DefaultAdmins = @("ppro\sp48backupadm"); ## Theese Administrators will be added to each site.
 #$sitePath = "bgint03"; ### The new site collection beneath the managed path "team. NOTE: No leading or trailing slashes"
 #$siteManagedPath = "teamsites" ### The managed path to use. NOTE: No leading or trailing slashes ##
 #$Owner = "dev-gmv\u48gmv";
@@ -36,7 +37,7 @@ $ContentDB ="WSS_Content_096bc88ec8dc4b4585d30f903f45a63a";
     Owner = "dev-gmv\u48gmv";
     Title = "BG Projekt 04";
     Description = "Demo Projekt Seite";
-    Admins = @("dev-gmv\bgadmin");
+    Admins = @("dev-gmv\bgadmin")+$DefaultAdmins;
 }
 ##>
 
@@ -49,7 +50,7 @@ $sitesToCreate = @(
         Owner = "dev-gmv\u48gmv";
         Title = "BG Projekt 04";
         Description = "Demo Projekt Seite";
-        Admins = @("dev-gmv\bgadmin");
+        Admins = @("dev-gmv\bgadmin")+$DefaultAdmins;
     },
     [PSCustomObject]@{
         Template = "SITEPAGEPUBLISHING#0";
@@ -59,7 +60,7 @@ $sitesToCreate = @(
         Owner = "dev-gmv\u48gmv";
         Title = "BG Projekt 05";
         Description = "Demo Projekt Seite";
-        Admins = @("dev-gmv\bgadmin");
+        Admins = @("dev-gmv\bgadmin")+$DefaultAdmins;
     },
     [PSCustomObject]@{
         Template = "SITEPAGEPUBLISHING#0";
@@ -69,7 +70,7 @@ $sitesToCreate = @(
         Owner = "dev-gmv\u48gmv";
         Title = "BG Projekt 06";
         Description = "Demo Projekt Seite";
-        Admins = @("dev-gmv\bgadmin");
+        Admins = @("dev-gmv\bgadmin")+$DefaultAdmins;
     }
 );
 ### Runtime variables ###
