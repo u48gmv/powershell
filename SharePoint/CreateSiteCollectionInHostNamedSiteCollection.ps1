@@ -174,7 +174,7 @@ foreach($siteToCreate in $sitesToCreate){
         ### Enable/Disable feature ###
         Disable-SPFeature -Identity "MDSFeature" -Url $site -Force -Confirm:$false -ErrorAction Ignore;  # Disable minimum download strategy feature
         Write-Host "Following feature was disabled: " -ForegroundColor Green -NoNewline;
-        Write-Host "MDSFeature (Minimal Download stragety)" -ForegroundColor Yellow;
+        Write-Host "MDSFeature (Minimal Download Strategy)" -ForegroundColor Yellow;
         write-host "";
     }
 
