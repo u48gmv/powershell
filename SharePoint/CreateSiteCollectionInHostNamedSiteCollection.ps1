@@ -21,13 +21,7 @@ $WebApp = "https://ab.sp.ppro.bgnet.de/";
 $rootSite = "https://portal.ab.sp.ppro.bgnet.de"; ## This Host named site collection needs to exist. NOTE: No leading or trailing slashes
 $ContentDB ="AB_Content_Portal_001";
 $DefaultAdmins = @("ppro\sp48backupadm");
-#$sitePath = "bgint03"; ### The new site collection beneath the managed path "team. NOTE: No leading or trailing slashes"
-#$siteManagedPath = "teamsites" ### The managed path to use. NOTE: No leading or trailing slashes ##
-#$Owner = "dev-gmv\u48gmv";
-#$Name ="BG Interessenvertreter 03";
-#$Description ="Demo Interessenvertreter Seite";
-#$siteCollectionAdmins = @("ms\u48pru","ms\u48wst","ms\u48gmv","ms\u480tbs","ms\u48hhh","ms\u48mll","ms\u48gsc","ms\u48rqa","ms\u48lpd","ppro\sp48backupadm");
-#$siteCollectionAdmins = @("dev-gmv\bguser");
+
 <## Example site to create
 [PSCustomObject]@{
     WebApp=$WebApp;
@@ -57,60 +51,7 @@ $sitesToCreate = @(
         Title = "App 01";
         Description = "Demosite für App 01";
         Admins = @("ms\u48gmv")+$DefaultAdmins;
-    },
-    [PSCustomObject]@{
-        WebApp=$WebApp;
-        RootSite=$rootSite;
-        ContentDb=$ContentDB;
-        Template = "SITEPAGEPUBLISHING#0";
-        Language = 1031;
-        SitePath = "app02";
-        SiteManagedPath ="app";
-        Owner = "ppro\SP48SPSETUPABNAHME";
-        Title = "App 02";
-        Description = "Demosite für App 01";
-        Admins = @("ms\u48gmv")+$DefaultAdmins;
-    },
-    [PSCustomObject]@{
-        WebApp=$WebApp;
-        RootSite=$rootSite;
-        ContentDb=$ContentDB;
-        Template = "SITEPAGEPUBLISHING#0";
-        Language = 1031;
-        SitePath = "app03";
-        SiteManagedPath ="app";
-        Owner = "ppro\SP48SPSETUPABNAHME";
-        Title = "App 03";
-        Description = "Demosite für App 01";
-        Admins = @("ms\u48gmv")+$DefaultAdmins;
-    },
-    [PSCustomObject]@{
-        WebApp=$WebApp;
-        RootSite=$rootSite;
-        ContentDb=$ContentDB;
-        Template = "SITEPAGEPUBLISHING#0";
-        Language = 1031;
-        SitePath = "app04";
-        SiteManagedPath ="app";
-        Owner = "ppro\SP48SPSETUPABNAHME";
-        Title = "App 04";
-        Description = "Demosite für App 01";
-        Admins = @("ms\u48gmv")+$DefaultAdmins;
-    },
-    [PSCustomObject]@{
-        WebApp=$WebApp;
-        RootSite=$rootSite;
-        ContentDb=$ContentDB;
-        Template = "SITEPAGEPUBLISHING#0";
-        Language = 1031;
-        SitePath = "app05";
-        SiteManagedPath ="app";
-        Owner = "ppro\SP48SPSETUPABNAHME";
-        Title = "App 05";
-        Description = "Demosite für App 01";
-        Admins = @("ms\u48gmv")+$DefaultAdmins;
     }
-
 );
 ### Runtime variables ###
 $errorOccured = $true;
@@ -139,14 +80,6 @@ foreach($siteToCreate in $sitesToCreate){
     Try{    
         $newSpSite = New-SPSite $site  -HostHeaderWebApplication $siteToCreate.WebApp -Name $siteToCreate.Title -Description $siteToCreate.Description  -OwnerAlias $siteToCreate.Owner -language $siteToCreate.Language -Template $siteToCreate.Template -ContentDatabase $siteToCrate.ContentDb -ErrorAction Stop;
         
-        <### Insert default permission groups
-        $web=$newSpSite.RootWeb
-        $web.AssociatedOwnerGroup = $null
-        $web.AssociatedMemberGroup = $null
-        $web.AssociatedVisitorGroup = $null
-        $web.CreateDefaultAssociatedGroups($newSpSite.Site.Owner.UserLogin, $newSpSite.Site.SecondaryContact.UserLogin, $newSpSite.Title)
-        ###>
-
         Write-Host "Host named site collection created. Visit is on -> $site" -ForegroundColor Magenta -BackgroundColor Black;
         $errorOccured = $false;
     }
