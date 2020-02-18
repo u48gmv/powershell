@@ -27,7 +27,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
     foreach ($Site in $SiteCollections) { 
         #Check Whether the Search User is a Site Collection Administrator 
         foreach ($SiteCollAdmin in $Site.RootWeb.SiteAdministrators) { 
-            "$($Site.RootWeb.Url)`tSite`t$($Site.RootWeb.Title)`tSite Collection Administrator`tSite Collection Administrator`t$($SiteCollAdmin.LoginName)" | Out-File $FileUrl -Append 
+            "$($Site.RootWeb.Url)`tSite`t$($Site.RootWeb.Title)`tSite Collection Administrator`tSite Collection Administrator`t$($SiteCollAdmin.DisplayName)" | Out-File $FileUrl -Append 
         } 
    
         #Loop throuh all Sub Sites 
@@ -44,7 +44,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                         } 
                          
                         #Send the Data to Log file 
-                        "$($Web.Url)`tSite`t$($Web.Title)`tDirect Permission`t$($WebUserPermissions) `t$($WebRoleAssignment.Member.LoginName)" | Out-File $FileUrl -Append 
+                        "$($Web.Url)`tSite`t$($Web.Title)`tDirect Permission`t$($WebUserPermissions) `t$($WebRoleAssignment.Member.DisplayName)" | Out-File $FileUrl -Append 
                     } 
                     #Its a SharePoint Group, So search inside the group and check if the user is member of that group 
                     else { 
@@ -56,7 +56,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                             } 
                              
                             #Send the Data to Log file 
-                            "$($Web.Url)`tSite`t$($Web.Title)`tMember of $($WebRoleAssignment.Member.Name) Group`t$($WebGroupPermissions)`t$($user.LoginName)" | Out-File $FileUrl -Append 
+                            "$($Web.Url)`tSite`t$($Web.Title)`tMember of $($WebRoleAssignment.Member.Name) Group`t$($WebGroupPermissions)`t$($user.DisplayName)" | Out-File $FileUrl -Append 
                         } 
                     } 
                 } 
@@ -88,7 +88,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                                 } 
                                  
                                 #Send the Data to Log file 
-                                "$($List.ParentWeb.Url)/$($List.RootFolder.Url)`tList`t$($List.Title)`tMember of $($ListRoleAssignment.Member.Name) Group`t$($ListGroupPermissions)`t$($user.LoginName)" | Out-File $FileUrl -Append 
+                                "$($List.ParentWeb.Url)/$($List.RootFolder.Url)`tList`t$($List.Title)`tMember of $($ListRoleAssignment.Member.Name) Group`t$($ListGroupPermissions)`t$($user.DisplayName)" | Out-File $FileUrl -Append 
                             } 
                         }     
                     } 
@@ -120,7 +120,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                                     } 
                                      
                                     #Send the Data to Log file 
-                                    "$($Folder.Web.Url)/$($Folder.Url)`tFolder`t$($Folder.Title)`tMember of $($FolderRoleAssignment.Member.Name) Group`t$($FolderGroupPermissions)`t$($user.LoginName)" | Out-File $FileUrl -Append 
+                                    "$($Folder.Web.Url)/$($Folder.Url)`tFolder`t$($Folder.Title)`tMember of $($FolderRoleAssignment.Member.Name) Group`t$($FolderGroupPermissions)`t$($user.DisplayName)" | Out-File $FileUrl -Append 
  
                                 } 
                             }     
@@ -186,7 +186,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                                     } 
  
                                     #Send the Data to Log file 
-                                    "$($ItemUrl)`tItem`t$($ItemTitle)`tMember of $($ItemRoleAssignment.Member.Name) Group`t$($ItemGroupPermissions)`t$($user.LoginName)" | Out-File $FileUrl -Append 
+                                    "$($ItemUrl)`tItem`t$($ItemTitle)`tMember of $($ItemRoleAssignment.Member.Name) Group`t$($ItemGroupPermissions)`t$($user.DisplayName)" | Out-File $FileUrl -Append 
  
                                 } 
                             }     
