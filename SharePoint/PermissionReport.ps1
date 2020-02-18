@@ -200,5 +200,5 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
 
 
 #Call the function to Check User Access 
-GetUserAccessReport "https://intra-ukn.ppro.bgnet.de" "D:\Temp\u48gmv\SharePoint_Permission_Report.csv" 
+GetUserAccessReport "https://intra-ukn.ppro.bgnet.de" "$PSScriptRoot\SharePoint_Permission_Report.csv" 
 Write-Host "Complete"
