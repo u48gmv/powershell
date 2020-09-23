@@ -1,7 +1,8 @@
 ﻿### Set continuous crawl interval ###
 
-### Add SharePoint Snap In ###
-Add-PSSnapin "Microsoft.SharePoint.Powershell";
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
 
 $ssa = Get-SPEnterpriseSearchServiceApplication;
 $ssa.GetProperty("ContinuousCrawlInterval");

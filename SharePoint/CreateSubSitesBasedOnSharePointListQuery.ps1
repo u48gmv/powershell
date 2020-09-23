@@ -4,16 +4,16 @@
 #    ->$sSiteCollection: Site Collection where we want to do the CAML Query 
 #    ->$sListName: Name of the list we want to query 
 ############################################################################################################################################
-cls 
+Clear-Host
  
-If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
 { Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell } 
  
 ### Init parameters ###
 $Template="BLANKINTERNET#0" ### Publishing site
 $Language = 1031 ### German
 $sSiteCollection="https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs/" 
-$sListName="Projektraumantr‰ge"
+$sListName="Projektraumantr√§ge"
 $logfile = "L:\TimerLogs\subSiteCreation.log"
 $logEntry = [pscustomobject]@{errorMessage="";errorStatus="";success=$false}
 

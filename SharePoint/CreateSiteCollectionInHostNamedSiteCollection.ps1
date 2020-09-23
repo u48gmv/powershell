@@ -3,7 +3,7 @@ clear-host
 
 ### Add SharePoint Snap In ###
 <# Load SharePoint PowerShell if not present #>
-If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
 { Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
 
 
@@ -66,7 +66,7 @@ foreach($siteToCreate in $sitesToCreate){
     $managedPath = Get-SPManagedPath -identity $siteToCreate.SiteManagedPath -HostHeader -ErrorAction Ignore;
 
     ### If the managed path does not exist create it, and continue creating the site ###
-    if($managedPath -eq $null){
+    if($null -eq $managedPath){
         $managedPath = New-SPManagedPath $siteToCreate.SiteManagedPath -HostHeader;
         Write-Host "Following manage path was added to the HostHeader: " -ForegroundColor Green -NoNewline;
         Write-Host $siteToCreate.SiteManagedPath -ForegroundColor Yellow;

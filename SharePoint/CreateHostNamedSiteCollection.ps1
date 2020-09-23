@@ -2,7 +2,7 @@
 Clear-Host
 ### Add SharePoint Snap In ###
 <# Load SharePoint PowerShell if not present #>
-If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
 { Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue }
 
 ### Init parameters ###

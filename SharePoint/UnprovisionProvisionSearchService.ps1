@@ -3,8 +3,9 @@ Clear-Host
 # Search Host Controller Service   9c7daf1c-df44-4e9a-a43b-08854c7a0728
 
 
-### Add SharePoint Snap In ###
-Add-PSSnapin "Microsoft.SharePoint.Powershell";
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
 
 
 #Unprovision Search Host Controller Service

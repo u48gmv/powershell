@@ -2,7 +2,7 @@
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) )
     {
         Add-PSSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;
@@ -44,10 +44,10 @@ foreach ($siteUrl in $siteUrls)
 $webApplication = "https://test.sp.ms.bgnet.de"
 
 ## Select ID and URL and export to a XML file
-get-spwebapplication $webApplication | Get-SPSite -Limit All | Select ID, URL | Export-Clixml -Path ./test.xml
+get-spwebapplication $webApplication | Get-SPSite -Limit All | Select-Object ID, URL | Export-Clixml -Path ./test.xml
 
 ## Select URL and export to a CSV file
-get-spwebapplication $webApplication | Get-SPSite -Limit All | Select URL | Export-Csv -Path ./sc.txt
+get-spwebapplication $webApplication | Get-SPSite -Limit All | Select-Object URL | Export-Csv -Path ./sc.txt
 
 
 ### Add an additional site collection admin ###

@@ -14,9 +14,9 @@
 
 Clear-Host
 
-If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
 { Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
-
 
 <### Init parameters ###>
 $webApp="http://dev02.sp.ppro.bgnet.de/";
@@ -25,13 +25,13 @@ $sListUrl="Lists/sites";
 
 
 <# Create login credentials #>
-$pwd = 'Dj3mrc8-vJCY';
+$pwd = '';
 $uname = 'sp48spsetupdev02';
 $PasswordAsSecure = ConvertTo-SecureString $pwd -AsPlainText -Force;
 $Credentials = New-Object System.Management.Automation.PSCredential ($uname , $PasswordAsSecure);
 
 <### Collect all sites and webs ###>
-$webs = get-spwebapplication $webApp | get-spsite -Limit All | get-spweb -Limit All | Select Title, URL, ID, ParentWebID;
+$webs = get-spwebapplication $webApp | get-spsite -Limit All | get-spweb -Limit All | Select-Object Title, URL, ID, ParentWebID;
 
 
 <### Connect to the site containig the list to post the results to ###>

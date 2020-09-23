@@ -4,10 +4,11 @@
 #    ->$sSiteCollection: Site Collection where we want to do the CAML Query 
 #    ->$sListName: Name of the list we want to query 
 ############################################################################################################################################
-cls 
+Clear-Host 
  
-If ((Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue) -eq $null )  
-{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell } 
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
  
 $host.Runspace.ThreadOptions = "ReuseThread" 
  
@@ -60,7 +61,7 @@ function DoCAMLQuery
 Start-SPAssignment -Global 
 #Calling the function 
 $sSiteCollection="https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs/" 
-$sListName="Projektraumanträge" 
+$sListName="Projektraumantrï¿½ge" 
 DoCamlQuery -sSiteCollection $sSiteCollection -sListName $sListName 
 Stop-SPAssignment -Global 
  

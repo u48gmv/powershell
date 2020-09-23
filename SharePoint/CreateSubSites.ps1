@@ -1,5 +1,5 @@
 ﻿### Create  sub sites ###
-cls
+clear-host
 
 ### Add SharePoint Snap In ###
 Add-PSSnapin "Microsoft.SharePoint.Powershell";

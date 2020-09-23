@@ -1,8 +1,9 @@
 ﻿### Delete sub sites ###
-cls
+Clear-Host
 
-### Add SharePoint Snap In ###
-Add-PSSnapin "Microsoft.SharePoint.Powershell";
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
 
 
 ### Init parameters ###
@@ -10,7 +11,7 @@ Add-PSSnapin "Microsoft.SharePoint.Powershell";
 #### Connection settings ####
 $SiteUrl = "https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $foundError = $false;
 
@@ -39,7 +40,7 @@ $webs=@(
 ### Add Snap Ins if not already loaded ###
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue))
     {
         Add-PsSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;

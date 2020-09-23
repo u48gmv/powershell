@@ -1,9 +1,11 @@
 ﻿Clear-Host
-Add-PSSnapin Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
 
 function Remove-SPFeatureFromContentDB($ContentDb, $FeatureId, [switch]$ReportOnly)
 {
-    $db = Get-SPDatabase | where { $_.Name -eq $ContentDb }
+    $db = Get-SPDatabase | Where-Object { $_.Name -eq $ContentDb }
     [bool]$report = $false
     if ($ReportOnly) { $report = $true }
     
@@ -23,7 +25,7 @@ function Remove-SPFeature($obj, $objName, $featId, [bool]$report)
 {
     $feature = $obj.Features[$featId]
     
-    if ($feature -ne $null) {
+    if ($null -ne $feature) {
         if ($report) {
             write-host "Feature found in" $objName ":" $obj.Url -foregroundcolor Red
         }

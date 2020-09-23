@@ -1,9 +1,9 @@
 ﻿### Import a Site ###
-cls
+Clear-Host
 ### Init parameters ###
 $SiteUrl = "https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs/bgrci";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $importFile = "D:\u48gmv\imports\iewibs\subsite.xml"
 
@@ -11,7 +11,7 @@ $importFile = "D:\u48gmv\imports\iewibs\subsite.xml"
 ### Add Snap Ins if not already loaded ###
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue))
     {
         Add-PsSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;

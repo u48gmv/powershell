@@ -1,26 +1,11 @@
 ﻿### Import a Site ###
-cls
+Clear-Host
 ### Init parameters ###
-<### Import from DEV 01 to DEV 01
-$SiteUrl = "https://bgp.dev01.sp.ppro.bgnet.de/team/iewibs";
-$UserName = "ppro\sp48spsetupdev01";
-$Password = "wjX7iFATHVfh";
-$snapInsToAdd = @("Microsoft.SharePoint.Powershell");
-$importFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev01.xml";
- ###>
-
-<### Import from DEV 02 to DEV 01 
-$SiteUrl = "https://bgp.dev01.sp.ppro.bgnet.de/team/iewibs";
-$UserName = "ppro\sp48spsetupdev01";
-$Password = "wjX7iFATHVfh";
-$snapInsToAdd = @("Microsoft.SharePoint.Powershell");
-$importFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev02.xml";
-##>
 
 <### Import from DEV 02 TEST ##>
 $SiteUrl = "https://iewibs.dev02.sp.ppro.bgnet.de/";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $importFile = "D:\u48gmv\exports\testing-exp\team-landing-site_dev02.xml";
 
@@ -28,7 +13,7 @@ $importFile = "D:\u48gmv\exports\testing-exp\team-landing-site_dev02.xml";
 ### Add Snap Ins if not already loaded ###
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue))
     {
         Add-PsSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;

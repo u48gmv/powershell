@@ -1,7 +1,8 @@
 ﻿Clear-Host
 <# Load SharePoint PowerShell if not present #>
 If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
-{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue }
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
+
 $Url = "https://portal.prod.sp.ppro.bgnet.de/teamsite/testing_gmv_intver_001"
 
 $ssas = Get-SPEnterpriseSearchServiceApplication

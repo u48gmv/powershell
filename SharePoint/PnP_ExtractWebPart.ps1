@@ -1,7 +1,7 @@
 ﻿
 $SiteUrl = "https://bgbau.intra.dev01.sp.ppro.bgnet.de";
 $UserName = "ms\u48gmv";
-$Password = "Admin-004";
+$Password = "";
 $PageUrl = "/Seiten/GMV-TEST.aspx";
 
 Disconnect-PnPOnline

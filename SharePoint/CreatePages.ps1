@@ -1,10 +1,10 @@
 ﻿### Export a Site ###
-cls
+Clear-Host
 ### Init parameters ###
 $WebApp = "http://dev02.sp.ppro.bgnet.de/";
 $SiteUrl = "http://bgp.dev02.sp.ppro.bgnet.de/";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $siteCollectionAdmins = @("ms\u48gmv","ms\u48pru","ms\u480tbs","ms\u48hhh","ms\u48mll","ms\u48gsc");
 $folderToPublish = "/Seiten";
@@ -14,7 +14,7 @@ $importFile = "D:\u48gmv\imports\bgpStarterIntranet\bgpStarterIntranetTest.xml";
 ### Add Snap Ins if not already loaded ###
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue))
     {
         Add-PsSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;

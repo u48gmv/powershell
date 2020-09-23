@@ -2,7 +2,7 @@ Clear-Host
 <#
 $SiteUrl = "https://ssp.dev02.sp.ppro.bgnet.de/";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 
 # Connect to the site
 $PasswordAsSecure = ConvertTo-SecureString $Password -AsPlainText -Force;
@@ -21,7 +21,7 @@ Disconnect-PnPOnline
 
 $SiteUrl = "https://bg-phoenics.test.sp.ppro.bgnet.de/webseiten/ibsiew";
 $UserName = "ms\u48gmv";
-$Password = "Admin-002";
+$Password = "";
 
 # Connect to the site
 $PasswordAsSecure = ConvertTo-SecureString $Password -AsPlainText -Force;

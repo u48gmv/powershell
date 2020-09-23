@@ -1,10 +1,10 @@
 ﻿### Export a Site ###
-cls
+Clear-Host
 ### Init parameters ###
 <## DEV 02 Export
 $SiteUrl = "https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $exportFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev02.xml"
 ##>
@@ -12,7 +12,7 @@ $exportFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev02.xml"
 <## DEV 01 Export
 $SiteUrl = "https://bgp.dev01.sp.ppro.bgnet.de/team/iewibs";
 $UserName = "ppro\sp48spsetupdev01";
-$Password = "wjX7iFATHVfh";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $exportFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev01.xml"
  ##>
@@ -20,7 +20,7 @@ $exportFile = "D:\u48gmv\exports\iewibs_team\team-landing-site_dev01.xml"
 <## DEV 02 Test Exports ##>
 $SiteUrl = "https://bgp.dev02.sp.ppro.bgnet.de/team/iewibs";
 $UserName = "ppro\sp48spsetupdev02";
-$Password = "Dj3mrc8-vJCY";
+$Password = "";
 $snapInsToAdd = @("Microsoft.SharePoint.Powershell");
 $exportFile = "D:\u48gmv\exports\testing-exp\team-landing-site_dev02.xml"
 
@@ -30,7 +30,9 @@ $exportFile = "D:\u48gmv\exports\testing-exp\team-landing-site_dev02.xml"
 ### Add Snap Ins if not already loaded ###
 foreach ($snapInToAdd in $snapInsToAdd) 
 {
-    if ( (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue) -eq $null )
+    <# Load SharePoint PowerShell if not present #>
+  
+    if ( $null -eq (Get-PSSnapin -Name $snapInToAdd -ErrorAction SilentlyContinue))
     {
         Add-PsSnapin $snapInToAdd;
         Write-Host "$snapInToAdd loaded" -ForegroundColor Green;

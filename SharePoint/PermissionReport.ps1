@@ -1,6 +1,8 @@
 # Note that AD groups and users in AD groups are not included 
  
-Add-PSSnapin Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue 
+<# Load SharePoint PowerShell if not present #>
+If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue))  
+{ Add-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyContinue } 
  
 Function GetUserAccessReport($WebAppURL, $FileUrl) { 
     Write-Host "Generating permission report..." 
@@ -142,7 +144,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                                 } 
  
                                 #Prepare item's absolute Url and Name 
-                                $ItemDispForm = $Item.ParentList.Forms | where { $_.Type -eq "PAGE_DISPLAYFORM" } | Select-Object -first 1 
+                                $ItemDispForm = $Item.ParentList.Forms | Where-Object { $_.Type -eq "PAGE_DISPLAYFORM" } | Select-Object -first 1 
                                 if ($ItemDispForm.Url) { 
                                     $ItemUrl = "$($Item.Web.Url)/$($ItemDispForm.Url)?ID=$($Item.ID)"  
                                 } 
@@ -170,7 +172,7 @@ Function GetUserAccessReport($WebAppURL, $FileUrl) {
                                     } 
                                      
                                     #Prepare item's absolute Url and Name 
-                                    $ItemDispForm = $Item.ParentList.Forms | where { $_.Type -eq "PAGE_DISPLAYFORM" } | Select-Object -first 1 
+                                    $ItemDispForm = $Item.ParentList.Forms | Where-Object { $_.Type -eq "PAGE_DISPLAYFORM" } | Select-Object -first 1 
                                     if ($ItemDispForm.Url) { 
                                         $ItemUrl = "$($Item.Web.Url)/$($ItemDispForm.Url)?ID=$($Item.ID)"  
                                     } 
