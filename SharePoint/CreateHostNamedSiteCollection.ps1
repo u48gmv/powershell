@@ -9,6 +9,7 @@ If ($null -eq (Get-PSSnapIn -Name Microsoft.SharePoint.PowerShell -ErrorAction S
 #$Template="BLANKINTERNET#0"; ### Publishing site
 #$Template="DEV#0"; ### Developer site
 #$Template="STS#0"; ### Standard team site
+#$Template="STS#3"; ### Standard team site modern
 $Template="SITEPAGEPUBLISHING#0" ### Communication site
 $Language = 1031; ### Deutsch
 $WebApp = "http://sp2019vm/";
